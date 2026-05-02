@@ -1,0 +1,331 @@
+/* --- Section Navigasi --- */
+.navbar {
+    position: fixed;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+}
+
+.menu-checkbox {
+    display: none; /* Sembunyikan checkbox asli */
+}
+
+/* --- TOMBOL NAVIGASI (DUA GARIS BERTINGKAT) --- */
+.menu-trigger {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    padding: 10px;
+}
+
+.icon-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px; /* Jarak antara garis atas dan bawah */
+}
+
+/* Garis Pertama (Panjang) */
+.line-1 {
+    width: 45px;
+    height: 2px;
+    background-color: #c5a859; /* Warna Emas */
+    display: block;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Garis Kedua (Lebih Pendek) */
+.line-2 {
+    width: 25px; /* Panjang awal lebih pendek */
+    height: 2px;
+    background-color: #c5a859; /* Warna Emas */
+    display: block;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Efek saat Menu Diklik (Checkbox Checked) */
+.menu-checkbox:checked ~ .menu-trigger .line-1 {
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(197, 168, 89, 0.5);
+}
+
+.menu-checkbox:checked ~ .menu-trigger .line-2 {
+    width: 40px; /* Garis bawah memanjang saat aktif */
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(197, 168, 89, 0.5);
+}
+
+/* --- MENU NAVIGASI --- */
+.nav-menu {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    padding: 0;
+    margin: 20px 0 0 0;
+    
+    /* Keadaan Awal: Tersembunyi */
+    opacity: 0;
+    visibility: hidden;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(-10px);
+}
+
+.nav-menu li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    white-space: nowrap;
+    transition: color 0.3s;
+}
+
+.nav-menu li a:hover {
+    color: #c5a859;
+}
+
+/* Munculkan Menu saat Checkbox Aktif */
+.menu-checkbox:checked ~ .nav-menu {
+    opacity: 1;
+    visibility: visible;
+    max-height: 100px;
+    transform: translateY(0);
+}
+
+/* --- RESPONSIVE MOBILE --- */
+@media (max-width: 768px) {
+    .nav-menu {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .menu-checkbox:checked ~ .nav-menu {
+        max-height: 500px; 
+    }
+}
+
+/* --- RESET & GLOBAL --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0a192f;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 25px;
+}
+
+.gold-text {
+    color: #c5a859;
+}
+
+/* --- HEADER DENGAN BACKGROUND --- */
+/* --- CONTACT HEADER --- */
+.contact-header {
+    /* Padding standar desktop */
+    padding: 180px 0 100px;
+    
+    /* Konfigurasi background */
+    background-image: linear-gradient(rgba(5, 12, 24, 0.85), rgba(5, 12, 24, 0.85)), 
+                      url('Kontak-BG.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    
+    /* Parallax mewah untuk desktop */
+    background-attachment: fixed;
+    
+    text-align: center;
+    border-bottom: 1px solid rgba(197, 168, 89, 0.1);
+    position: relative;
+}
+
+/* --- PERBAIKAN RESPONSIVE KONTAK --- */
+@media (max-width: 768px) {
+    .contact-header {
+        /* Mengurangi padding agar tidak terlalu memakan ruang vertikal di HP */
+        padding: 120px 0 80px;
+        
+        /* WAJIB: Nonaktifkan parallax di mobile agar gambar tidak pecah/zoom ekstrem */
+        background-attachment: scroll;
+        
+        /* Geser fokus ke arah kanan (70%) agar siluet orang tetap masuk dalam frame mobile */
+        background-position: 70% center;
+        
+        /* Membatasi tinggi minimal agar tampilan tetap proporsional */
+        min-height: 350px;
+    }
+}
+
+.sub-title {
+    color: #c5a859;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.main-title {
+    font-family: 'Prata', serif;
+    font-size: 3.2rem;
+    margin-bottom: 20px;
+}
+
+.header-desc {
+    color: rgba(255, 255, 255, 0.6);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* --- CONTENT SECTION --- */
+.contact-content-section {
+    padding: 100px 0;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+/* Kolom Info */
+.contact-box {
+    margin-bottom: 20px; /* Dikurangi dari 35px agar tidak terlalu panjang */
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(197, 168, 89, 0.1); /* Warna border disesuaikan ke emas tipis */
+}
+
+.contact-box h4 {
+    font-family: 'Prata', serif;
+    font-size: 1rem; /* Ukuran font sedikit lebih kecil agar pas */
+    margin-bottom: 5px;
+}
+
+.contact-box p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+    font-weight: 300;
+}
+
+/* Tombol WA */
+.btn-wa {
+    display: inline-block;
+    padding: 18px 35px;
+    background-color: #c5a859;
+    color: #050c18;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    transition: 0.3s;
+}
+
+.btn-wa:hover {
+    background-color: #e2c275;
+    transform: translateY(-3px);
+}
+
+/* Kolom Peta */
+/* --- Desktop Default --- */
+.map-frame {
+    border: 1px solid rgba(197, 168, 89, 0.2);
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+/* --- RESPONSIVE MOBILE --- */
+@media (max-width: 768px) {
+    /* Asumsi .contact-container adalah pembungkus utama kedua elemen */
+    .contact-container { 
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Targetkan pembungkus tombol WhatsApp agar muncul pertama */
+    .whatsapp-container {
+        order: 1;
+    }
+
+    /* Targetkan pembungkus Maps agar muncul di bawah */
+    .map-frame {
+        order: 2;
+        margin-top: 20px; /* Jarak tambahan antara tombol WA dan Maps */
+    }
+}
+
+/* --- 4. FOOTER --- */
+.minimal-footer {
+    padding: 60px 0 40px;
+    background-color: #050c18;
+    text-align: center;
+    border-top: 1px solid rgba(197, 168, 89, 0.1);
+}
+
+.footer-brand {
+    font-family: 'Prata', serif;
+    font-size: 1.6rem;
+    color: #c5a859;
+    letter-spacing: 3px;
+    margin-bottom: 5px;
+}
+
+.footer-tagline {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 25px;
+}
+
+.footer-divider {
+    width: 40px;
+    height: 1px;
+    background-color: rgba(197, 168, 89, 0.3);
+    margin: 0 auto 25px;
+}
+
+.footer-copyright {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* --- 5. RESPONSIVE --- */
+@media (max-width: 1024px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 Kolom di tablet */
+    }
+}
+
+@media (max-width: 768px) {
+    .services-grid {
+        grid-template-columns: 1fr; /* 1 Kolom di HP */
+    }
+    
+    .main-title {
+        font-size: 2.2rem;
+    }
+}

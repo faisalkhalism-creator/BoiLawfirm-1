@@ -1,0 +1,311 @@
+/* --- 1. RESET & GLOBAL --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #050c18; /* Navy Gelap sesuai Tim Kami */
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 25px;
+}
+
+.gold-text { color: #c5a859; }
+
+/* --- 2. NAVIGASI (Sama Persis) --- */
+/* --- SECTION NAVIGASI FIX --- */
+.navbar {
+    position: fixed;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+}
+
+.menu-checkbox {
+    display: none; /* Sembunyikan checkbox asli */
+}
+
+/* --- TOMBOL NAVIGASI (DUA GARIS BERTINGKAT) --- */
+.menu-trigger {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    padding: 10px;
+}
+
+.icon-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px; /* Jarak antara garis atas dan bawah */
+}
+
+/* Garis Pertama (Panjang) */
+.line-1 {
+    width: 45px;
+    height: 2px;
+    background-color: #c5a859; /* Warna Emas */
+    display: block;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Garis Kedua (Lebih Pendek) */
+.line-2 {
+    width: 25px; /* Panjang awal lebih pendek */
+    height: 2px;
+    background-color: #c5a859; /* Warna Emas */
+    display: block;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Efek saat Menu Diklik (Checkbox Checked) */
+.menu-checkbox:checked ~ .menu-trigger .line-1 {
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(197, 168, 89, 0.5);
+}
+
+.menu-checkbox:checked ~ .menu-trigger .line-2 {
+    width: 40px; /* Garis bawah memanjang saat aktif */
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(197, 168, 89, 0.5);
+}
+
+/* --- MENU NAVIGASI --- */
+.nav-menu {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    padding: 0;
+    margin: 20px 0 0 0;
+    
+    /* Keadaan Awal: Tersembunyi */
+    opacity: 0;
+    visibility: hidden;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(-10px);
+}
+
+.nav-menu li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    white-space: nowrap;
+    transition: color 0.3s;
+}
+
+.nav-menu li a:hover {
+    color: #c5a859;
+}
+
+/* Munculkan Menu saat Checkbox Aktif */
+.menu-checkbox:checked ~ .nav-menu {
+    opacity: 1;
+    visibility: visible;
+    max-height: 100px;
+    transform: translateY(0);
+}
+
+/* --- RESPONSIVE MOBILE --- */
+@media (max-width: 768px) {
+    .nav-menu {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .menu-checkbox:checked ~ .nav-menu {
+        max-height: 500px; 
+    }
+}
+
+/* --- 3. HEADER GALERI --- */
+/* --- GALLERY HEADER --- */
+.gallery-header {
+    /* Padding standar untuk tampilan desktop */
+    padding: 160px 0 80px;
+    
+    /* Konfigurasi background */
+    background-image: linear-gradient(rgba(5, 12, 24, 0.85), rgba(5, 12, 24, 0.85)), 
+                      url('Galeri-BG.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    
+    /* Efek parallax untuk desktop */
+    background-attachment: fixed;
+    
+    text-align: center;
+    position: relative;
+}
+
+/* --- PERBAIKAN RESPONSIVE GALERI --- */
+@media (max-width: 768px) {
+    .gallery-header {
+        /* Mengurangi padding agar tinggi header lebih proporsional di HP */
+        padding: 120px 0 60px;
+        
+        /* Nonaktifkan parallax di mobile agar gambar tidak zoom ekstrem */
+        background-attachment: scroll;
+        
+        /* Fokus pada bagian tengah atas agar kepala subjek dan deretan lukisan terlihat */
+        background-position: center 30%;
+        
+        /* Membatasi tinggi minimal agar tidak terlalu 'gepeng' */
+        min-height: 300px;
+    }
+}
+
+.sub-title {
+    color: #c5a859;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.main-title {
+    font-family: 'Prata', serif;
+    font-size: 3.2rem;
+    font-weight: 400;
+    margin-bottom: 30px;
+}
+
+.gold-line-center {
+    width: 60px;
+    height: 2px;
+    background: #c5a859;
+    margin: 0 auto;
+}
+
+/* --- 4. GRID GALERI --- */
+.gallery-section { padding: 80px 0; }
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(197, 168, 89, 0.15);
+    aspect-ratio: 4/3;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(40%);
+    transition: all 0.6s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+    filter: grayscale(0%);
+}
+
+.gallery-overlay {
+    position: absolute;
+    bottom: 0; left: 0; width: 100%;
+    padding: 25px 20px;
+    background: linear-gradient(transparent, rgba(5, 12, 24, 0.95));
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.4s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.gallery-cat {
+    color: #c5a859;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.gallery-title {
+    font-family: 'Prata', serif;
+    font-size: 1.2rem;
+    color: #ffffff;
+    font-weight: 400;
+}
+
+/* --- 5. FOOTER --- */
+.minimal-footer {
+    padding: 60px 0 40px;
+    background-color: #050c18;
+    text-align: center;
+    border-top: 1px solid rgba(197, 168, 89, 0.1);
+}
+
+.footer-brand {
+    font-family: 'Prata', serif;
+    font-size: 1.6rem;
+    color: #c5a859;
+    letter-spacing: 3px;
+    margin-bottom: 5px;
+}
+
+.footer-tagline {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 25px;
+}
+
+.footer-divider {
+    width: 40px;
+    height: 1px;
+    background-color: rgba(197, 168, 89, 0.3);
+    margin: 0 auto 25px;
+}
+
+.footer-copyright {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+    .gallery-grid { grid-template-columns: 1fr; }
+    .main-title { font-size: 2.5rem; }
+    .nav-menu { flex-direction: column; align-items: center; gap: 15px; }
+}

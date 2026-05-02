@@ -1,0 +1,369 @@
+/* --- Section Navigasi --- */
+/* --- SECTION NAVIGASI FIX --- */
+.navbar {
+    position: fixed;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+}
+
+.menu-checkbox {
+    display: none; /* Sembunyikan checkbox asli */
+}
+
+/* --- TOMBOL NAVIGASI (DUA GARIS BERTINGKAT) --- */
+.menu-trigger {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    padding: 10px;
+}
+
+.icon-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px; /* Jarak antara garis atas dan bawah */
+}
+
+/* Garis Pertama (Panjang) */
+.line-1 {
+    width: 45px;
+    height: 2px;
+    background-color: #c5a859; /* Warna Emas */
+    display: block;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Garis Kedua (Lebih Pendek) */
+.line-2 {
+    width: 25px; /* Panjang awal lebih pendek */
+    height: 2px;
+    background-color: #c5a859; /* Warna Emas */
+    display: block;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Efek saat Menu Diklik (Checkbox Checked) */
+.menu-checkbox:checked ~ .menu-trigger .line-1 {
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(197, 168, 89, 0.5);
+}
+
+.menu-checkbox:checked ~ .menu-trigger .line-2 {
+    width: 40px; /* Garis bawah memanjang saat aktif */
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(197, 168, 89, 0.5);
+}
+
+/* --- MENU NAVIGASI --- */
+.nav-menu {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    padding: 0;
+    margin: 20px 0 0 0;
+    
+    /* Keadaan Awal: Tersembunyi */
+    opacity: 0;
+    visibility: hidden;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(-10px);
+}
+
+.nav-menu li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    white-space: nowrap;
+    transition: color 0.3s;
+}
+
+.nav-menu li a:hover {
+    color: #c5a859;
+}
+
+/* Munculkan Menu saat Checkbox Aktif */
+.menu-checkbox:checked ~ .nav-menu {
+    opacity: 1;
+    visibility: visible;
+    max-height: 100px;
+    transform: translateY(0);
+}
+
+/* --- RESPONSIVE MOBILE --- */
+@media (max-width: 768px) {
+    .nav-menu {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .menu-checkbox:checked ~ .nav-menu {
+        max-height: 500px; 
+    }
+}
+
+/* --- 1. RESET & GLOBAL --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #050c18;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 25px;
+}
+
+/* --- 2. HEADER --- */
+/* --- TEAM HEADER --- */
+.team-header {
+    padding: 160px 0 80px;
+    
+    /* Gunakan background-image agar properti lain bisa diatur terpisah */
+    background-image: linear-gradient(rgba(5, 12, 24, 0.85), rgba(5, 12, 24, 0.85)), 
+                      url('Tim\ Kami-BG.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    
+    /* Efek Parallax untuk desktop */
+    background-attachment: fixed;
+    
+    text-align: center;
+    position: relative;
+}
+
+/* --- PERBAIKAN KHUSUS MOBILE --- */
+@media (max-width: 768px) {
+    .team-header {
+        /* Kurangi padding agar header tidak terlalu tinggi di mobile */
+        padding: 120px 0 60px;
+        
+        /* WAJIB: Nonaktifkan parallax di mobile agar tidak zoom ekstrem */
+        background-attachment: scroll;
+        
+        /* Fokus pada bagian atas gambar (wajah/kerah) agar subjek tetap terlihat */
+        background-position: center 20%;
+        
+        /* Batasi tinggi agar gambar tidak melar */
+        min-height: 350px;
+    }
+}
+
+.sub-title {
+    color: #c5a859;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.main-title {
+    font-family: 'Prata', serif;
+    font-size: 3.2rem;
+    font-weight: 400;
+    margin-bottom: 30px;
+}
+
+.gold-line-center {
+    width: 60px;
+    height: 2px;
+    background: #c5a859;
+    margin: 0 auto;
+}
+
+/* --- 3. KARTU ANGGOTA DASAR --- */
+.member-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(197, 168, 89, 0.15);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: 0.4s ease;
+}
+
+.member-card:hover {
+    border-color: #c5a859;
+    background: rgba(197, 168, 89, 0.04);
+}
+
+.member-img-container {
+    width: 100%;
+    height: 500px; /* Tinggi seragam sesuai permintaan */
+    overflow: hidden;
+}
+
+.member-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.role-badge {
+    color: #c5a859;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    display: block;
+    font-weight: 600;
+}
+
+.member-info h3 {
+    font-family: 'Prata', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+
+/* PENYESUAIAN BIO: Blok di tengah, tulisan rata kiri */
+.bio {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.8;
+    text-align: center; /* Tulisan tetap dari kiri ke kanan */
+    max-width: 90%;   /* Membatasi lebar agar bisa ditengahkan */
+    margin: 0 auto;   /* Menengahkan blok teks bio */
+}
+
+/* --- 4. KHUSUS BOIZIARDI (HORIZONTAL) --- */
+.leader-section {
+    margin: 80px auto;
+    display: flex;
+    justify-content: center;
+}
+
+.horizontal-card {
+    flex-direction: row; 
+    max-width: 1000px;
+    width: 100%;
+}
+
+.horizontal-card .member-img-container {
+    width: 40%;
+}
+
+.horizontal-card .member-info {
+    width: 60%;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center; /* Mengetengahkan Badge dan Nama */
+}
+
+.horizontal-card .bio {
+    max-width: 85%; /* Sedikit lebih ramping untuk pimpinan agar eksklusif */
+    margin-top: 10px;
+}
+
+/* --- 5. GRID ANGGOTA (2 PER BARIS) --- */
+.team-grid-modern {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px 40px;
+    margin-bottom: 100px;
+}
+
+.team-grid-modern .member-info {
+    padding: 35px;
+    text-align: center; /* Badge dan Nama di tengah */
+}
+
+/* --- 6. RESPONSIVE --- */
+@media (max-width: 992px) {
+    .horizontal-card {
+        flex-direction: column;
+    }
+    .horizontal-card .member-img-container, 
+    .horizontal-card .member-info {
+        width: 100%;
+    }
+    .team-grid-modern {
+        grid-template-columns: 1fr;
+    }
+    .bio {
+        max-width: 100%;
+    }
+}
+
+/* --- 4. FOOTER --- */
+.minimal-footer {
+    padding: 60px 0 40px;
+    background-color: #050c18;
+    text-align: center;
+    border-top: 1px solid rgba(197, 168, 89, 0.1);
+}
+
+.footer-brand {
+    font-family: 'Prata', serif;
+    font-size: 1.6rem;
+    color: #c5a859;
+    letter-spacing: 3px;
+    margin-bottom: 5px;
+}
+
+.footer-tagline {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 25px;
+}
+
+.footer-divider {
+    width: 40px;
+    height: 1px;
+    background-color: rgba(197, 168, 89, 0.3);
+    margin: 0 auto 25px;
+}
+
+.footer-copyright {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* --- 5. RESPONSIVE --- */
+@media (max-width: 1024px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 Kolom di tablet */
+    }
+}
+
+@media (max-width: 768px) {
+    .services-grid {
+        grid-template-columns: 1fr; /* 1 Kolom di HP */
+    }
+    
+    .main-title {
+        font-size: 2.2rem;
+    }
+}

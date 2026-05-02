@@ -1,0 +1,794 @@
+/* Theme: Royal Navy & Majestic Gold 
+   Colors: Navy (#0a192f), Gold (#c5a859), White (#ffffff)
+*/
+
+:root {
+    --navy-deep: #0a192f;       /* Warna dasar Navy yang elegan */
+    --navy-light: #112240;      /* Untuk layer atau card */
+    --gold: #c5a859;            /* Emas metalik profesional */
+    --gold-bright: #e4d0a9;     /* Emas muda untuk aksen */
+    --white: #ffffff;
+    --text-silver: #a8b2d1;     /* Abu-abu kebiruan untuk teks deskripsi */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', 'Montserrat', sans-serif;
+    background-color: var(--navy-deep);
+    color: var(--white);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* --- Section Navigasi --- */
+/* --- SECTION NAVIGASI FIX --- */
+.navbar {
+    position: fixed;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+}
+
+.menu-checkbox {
+    display: none; /* Sembunyikan checkbox asli */
+}
+
+/* --- TOMBOL NAVIGASI (DUA GARIS BERTINGKAT) --- */
+.menu-trigger {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    padding: 10px;
+}
+
+.icon-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px; /* Jarak antara garis atas dan bawah */
+}
+
+/* Garis Pertama (Panjang) */
+.line-1 {
+    width: 45px;
+    height: 2px;
+    background-color: #c5a859; /* Warna Emas */
+    display: block;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Garis Kedua (Lebih Pendek) */
+.line-2 {
+    width: 25px; /* Panjang awal lebih pendek */
+    height: 2px;
+    background-color: #c5a859; /* Warna Emas */
+    display: block;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Efek saat Menu Diklik (Checkbox Checked) */
+.menu-checkbox:checked ~ .menu-trigger .line-1 {
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(197, 168, 89, 0.5);
+}
+
+.menu-checkbox:checked ~ .menu-trigger .line-2 {
+    width: 40px; /* Garis bawah memanjang saat aktif */
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(197, 168, 89, 0.5);
+}
+
+/* --- MENU NAVIGASI --- */
+.nav-menu {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    padding: 0;
+    margin: 20px 0 0 0;
+    
+    /* Keadaan Awal: Tersembunyi */
+    opacity: 0;
+    visibility: hidden;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(-10px);
+}
+
+.nav-menu li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    white-space: nowrap;
+    transition: color 0.3s;
+}
+
+.nav-menu li a:hover {
+    color: #c5a859;
+}
+
+/* Munculkan Menu saat Checkbox Aktif */
+.menu-checkbox:checked ~ .nav-menu {
+    opacity: 1;
+    visibility: visible;
+    max-height: 100px;
+    transform: translateY(0);
+}
+
+/* --- RESPONSIVE MOBILE --- */
+@media (max-width: 768px) {
+    .nav-menu {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .menu-checkbox:checked ~ .nav-menu {
+        max-height: 500px; 
+    }
+}
+
+
+/* --- Hero Section --- */
+/* --- 1. Import Font (Wajib di paling atas file) --- */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap');
+
+/* --- 2. Home Page Section --- */
+/* --- 1. Reset Dasar --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #0a192f;
+            overflow-x: hidden;
+        }
+
+        /* --- 2. Home Page Section --- */
+
+    /* --- RESET --- */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+        font-family: 'Montserrat', sans-serif;
+        background-color: #0a192f;
+    }
+
+    /* --- HOME PAGE SECTION --- */
+    .home-page {
+        /* Gunakan tinggi yang fleksibel */
+        height: 100vh;
+        height: 100svh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        
+        background-image: url('Beranda-BG.jpg'); 
+        background-repeat: no-repeat;
+        
+        /* Posisi background ditarik agak ke kiri agar patung terlihat */
+        background-position: 25% center; 
+        background-size: cover;
+        background-attachment: scroll;
+    }
+
+    /* Parallax hanya untuk desktop */
+    @media (min-width: 1024px) {
+        .home-page {
+            background-attachment: fixed;
+            background-position: center;
+        }
+    }
+
+    /* Overlay Navy */
+    .home-page::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: linear-gradient(
+            to bottom, 
+            rgba(10, 25, 47, 0.8), 
+            rgba(10, 25, 47, 0.7)
+        );
+        z-index: 1;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        padding: 0 20px;
+        width: 100%;
+    }
+
+    .main-logo {
+        max-width: 280px;
+        width: 70%;
+        height: auto;
+        margin-bottom: 15px;
+    }
+
+    .hero-title-ornament {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.4rem;
+        font-style: italic;
+        color: #ffffff;
+        letter-spacing: 1px;
+    }
+
+    .gold-line {
+        display: block;
+        width: 50px;
+        height: 1px;
+        background: #c5a859;
+        margin: 10px auto 0;
+    }
+
+    /* --- SOLUSI MOBILE AGAR TIDAK MELAR --- */
+    @media (max-width: 768px) {
+        .home-page {
+            /* Kita batasi tinggi di mobile agar gambar landscape tidak ter-zoom parah */
+            height: 60vh; 
+            min-height: 450px;
+            /* Fokus pada area patung (sisi kiri gambar) */
+            background-position: 35% center; 
+        }
+        
+        .main-logo {
+            max-width: 180px;
+        }
+
+        .hero-title-ornament {
+            font-size: 1rem;
+        }
+    }
+        
+/* --- Profile Section --- */
+.profile-section {
+    padding: 100px 0;
+    background-color: #0a192f; /* Deep Navy */
+    color: #ffffff;
+    position: relative;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr; /* Teks lebih lebar dibanding stats */
+    gap: 80px;
+    align-items: center;
+}
+
+/* --- Teks Profil --- */
+.sub-title {
+    font-family: 'Montserrat', sans-serif;
+    color: #c5a859; /* Gold */
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.main-title {
+    font-family: 'Prata', serif; /* Font yang sama dengan Nama Firma */
+    font-size: 2.8rem;
+    line-height: 1.2;
+    margin-bottom: 30px;
+}
+
+.gold-text {
+    color: #c5a859;
+    font-style: italic;
+}
+
+.description {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+/* --- Stats/Values Area --- */
+.profile-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.stat-item {
+    padding-left: 25px;
+    border-left: 2px solid #c5a859; /* Aksen garis emas di samping */
+    transition: transform 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: translateX(10px); /* Efek interaktif saat kursor mendekat */
+}
+
+.stat-number {
+    font-family: 'Prata', serif;
+    font-size: 1.4rem;
+    color: #ffffff;
+    display: block;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+.stat-desc {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* --- Responsif untuk Tablet & HP --- */
+@media (max-width: 992px) {
+    .profile-grid {
+        grid-template-columns: 1fr; /* Menjadi satu kolom di layar kecil */
+        gap: 60px;
+    }
+    
+    .main-title {
+        font-size: 2.2rem;
+    }
+}
+
+/*Section Mengapa Kami*/
+/* --- Why Us Section --- */
+.why-us-section {
+    padding: 60px 0;
+    background-color: #0a192f;
+    color: #ffffff;
+}
+
+.why-us-flex {
+    display: flex;
+    align-items: flex-start;
+    gap: 80px;
+    flex-wrap: wrap;
+}
+
+.why-us-content {
+    flex: 1.2;
+    min-width: 350px;
+}
+
+/* Header Rata Kiri dengan Garis Emas */
+.section-header-left {
+    margin-bottom: 40px;
+}
+
+.section-header-left .sub-title {
+    font-family: 'Montserrat', sans-serif;
+    color: #c5a859;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.section-header-left .sub-title::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 1.5px;
+    background: #c5a859;
+}
+
+.section-header-left .main-title {
+    font-family: 'Prata', serif;
+    font-size: 2.2rem;
+    margin-top: 15px;
+}
+
+/* --- Point Keunggulan (Gaya Vertikal) --- */
+.vertical-points {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.point-item {
+    padding-left: 20px;
+    border-left: 1px solid rgba(197, 168, 89, 0.3);
+    transition: 0.3s ease;
+}
+
+.point-item:hover {
+    border-left: 1px solid #c5a859;
+    transform: translateX(10px);
+}
+
+.point-item h4 {
+    font-family: 'Prata', serif;
+    font-size: 1.15rem;
+    color: #ffffff;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+.point-item p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+/* --- Legal Card (Sisi Kanan) --- */
+.legal-panel {
+    flex: 0.8;
+    min-width: 320px;
+}
+
+.legal-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(197, 168, 89, 0.2);
+    padding: 40px;
+    position: relative;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+.legal-card::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    border-top: 1px solid #c5a859;
+    border-right: 1px solid #c5a859;
+}
+
+.legal-stamp {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: #c5a859;
+    border: 1px solid #c5a859;
+    padding: 4px 12px;
+    display: inline-block;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}
+
+.legal-header h3 {
+    font-family: 'Prata', serif;
+    font-size: 1.6rem;
+    margin-bottom: 5px;
+}
+
+.legal-header p {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 30px;
+}
+
+.doc-row {
+    margin-bottom: 22px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 8px;
+}
+
+.doc-row small {
+    display: block;
+    color: #c5a859;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+}
+
+.doc-row span {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    color: #ffffff;
+}
+
+/* Stempel Dekoratif */
+.legal-seal {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    opacity: 0.3;
+}
+
+.seal-circle {
+    width: 60px;
+    height: 60px;
+    border: 2px dashed #c5a859;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    font-weight: 800;
+    color: #c5a859;
+    transform: rotate(-20deg);
+}
+
+/* Responsif */
+@media (max-width: 992px) {
+    .why-us-flex {
+        flex-direction: column;
+        gap: 50px;
+    }
+}
+
+/*Section Berita/News*/
+/* --- News Section --- */
+/* --- SECTION BERITA MODERN --- */
+.news-section {
+    padding: 100px 0;
+    background-color: #050c18;
+    color: #ffffff;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.gold-line-small {
+    width: 50px;
+    height: 2px;
+    background: #c5a859;
+    margin: 20px auto 0;
+}
+
+/* DUAL LAYOUT LOGIC */
+.news-dual-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr; /* Ukuran asimetris agar tidak membosankan */
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.news-item {
+    padding: 50px;
+    position: relative;
+    transition: 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Style A: Featured (Latar Gelap Pekat) */
+.item-featured {
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 4px solid #c5a859;
+}
+
+/* Style B: Outline (Aksen Bingkai Emas) */
+.item-outline {
+    border: 1px solid rgba(197, 168, 89, 0.3);
+    background: transparent;
+}
+
+.item-featured:hover {
+    background: rgba(197, 168, 89, 0.05);
+}
+
+.item-outline:hover {
+    border-color: #c5a859;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+/* TYPOGRAPHY */
+.news-tag {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #c5a859;
+    color: #050c18;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 4px 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.news-date {
+    color: #c5a859;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.news-cat {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 10px;
+    display: block;
+}
+
+.news-item h3 {
+    font-family: 'Prata', serif;
+    font-size: 1.6rem;
+    line-height: 1.4;
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+
+.news-item p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 25px;
+    line-height: 1.8;
+}
+
+.news-link {
+    color: #c5a859;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+.news-link:hover {
+    letter-spacing: 2px;
+    color: #ffffff;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .news-dual-layout {
+        grid-template-columns: 1fr;
+    }
+    .news-item {
+        padding: 35px;
+    }
+}
+
+/* Tombol */
+/* --- CTA KONSULTASI - CLEAN & SEAMLESS --- */
+.news-cta-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    justify-content: center;
+    text-align: center;      
+    margin-top: 60px;        /* Jarak udara dari berita tanpa garis */
+    padding-top: 20px;       /* Spasi internal yang lebih rapat */
+    width: 100%;             
+}
+
+.cta-text {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.4); /* Warna sedikit lebih redup agar fokus ke tombol */
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.btn-consult {
+    display: inline-block;
+    color: #ffffff;
+    text-decoration: none;
+    font-family: 'Prata', serif;
+    font-size: 2rem;         /* Ukuran sedikit lebih besar agar menonjol */
+    position: relative;
+    padding-bottom: 15px;
+    transition: 0.4s ease;
+    cursor: pointer;
+}
+
+.btn-consult:hover {
+    color: #c5a859;
+}
+
+/* Garis aksen hanya di bawah tombol saat hover */
+.btn-line {
+    position: absolute;
+    bottom: 0;
+    left: 50%;               
+    transform: translateX(-50%); 
+    width: 0;                /* Mulai dari 0 agar hanya muncul saat hover */
+    height: 2px;
+    background: #c5a859;
+    transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-consult:hover .btn-line {
+    width: 100px;            /* Garis muncul secara elegan saat di-hover */
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    .btn-consult {
+        font-size: 1.6rem;
+    }
+}
+
+/* Section Footer */
+.minimal-footer {
+    padding: 60px 0 40px;
+    background-color: #050c18; /* Navy sedikit lebih gelap untuk membedakan dengan body */
+    text-align: center;
+    border-top: 1px solid rgba(197, 168, 89, 0.1);
+}
+
+.footer-brand {
+    font-family: 'Prata', serif;
+    font-size: 1.6rem;
+    color: #c5a859;
+    letter-spacing: 3px;
+    margin-bottom: 5px;
+}
+
+.footer-tagline {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 25px;
+}
+
+.footer-divider {
+    width: 40px;
+    height: 1px;
+    background-color: rgba(197, 168, 89, 0.3);
+    margin: 0 auto 25px;
+}
+
+.footer-copyright {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 0.5px;
+}
+
+/* Penyesuaian Mobile */
+@media (max-width: 768px) {
+    .footer-brand {
+        font-size: 1.3rem;
+    }
+    
+    .footer-tagline {
+        font-size: 0.65rem;
+    }
+}
